@@ -1,0 +1,60 @@
+[submodule "methods/benchmark-GenZ-ICP-to-HDMapping"]
+	path = methods/benchmark-GenZ-ICP-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-GenZ-ICP-to-HDMapping.git
+[submodule "methods/benchmark-LiDAR-IMU-Init-to-HDMapping"]
+	path = methods/benchmark-LiDAR-IMU-Init-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-LiDAR-IMU-Init-to-HDMapping.git
+[submodule "methods/benchmark-CT-ICP-to-HDMapping"]
+	path = methods/benchmark-CT-ICP-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-CT-ICP-to-HDMapping.git
+[submodule "methods/benchmark-LOAM-Livox-to-HDMapping"]
+	path = methods/benchmark-LOAM-Livox-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-LOAM-Livox-to-HDMapping.git
+[submodule "methods/benchmark-LeGO-LOAM-to-HDMapping"]
+	path = methods/benchmark-LeGO-LOAM-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-LeGO-LOAM-to-HDMapping.git
+[submodule "methods/benchmark-LIO-SAM-to-HDMapping"]
+	path = methods/benchmark-LIO-SAM-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-LIO-SAM-to-HDMapping.git
+[submodule "methods/benchmark-Faster-LIO-to-HDMapping"]
+	path = methods/benchmark-Faster-LIO-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-Faster-LIO-to-HDMapping.git
+[submodule "methods/benchmark-FAST-LIO-to-HDMapping"]
+	path = methods/benchmark-FAST-LIO-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-FAST-LIO-to-HDMapping.git
+[submodule "methods/benchmark-DLIO-to-HDMapping"]
+	path = methods/benchmark-DLIO-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-DLIO-to-HDMapping.git
+[submodule "methods/benchmark-Point-LIO-to-HDMapping"]
+	path = methods/benchmark-Point-LIO-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-Point-LIO-to-HDMapping.git
+[submodule "methods/benchmark-VoxelMap-to-HDMapping"]
+	path = methods/benchmark-VoxelMap-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-VoxelMap-to-HDMapping.git
+[submodule "methods/benchmark-DLO-to-HDMapping"]
+	path = methods/benchmark-DLO-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-DLO-to-HDMapping.git
+[submodule "methods/benchmark-KISS-ICP-to-HDMapping"]
+	path = methods/benchmark-KISS-ICP-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-KISS-ICP-to-HDMapping.git
+[submodule "methods/benchmark-I2EKF-LO-to-HDMapping"]
+	path = methods/benchmark-I2EKF-LO-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-I2EKF-LO-to-HDMapping.git
+[submodule "methods/benchmark-LIO-EKF-to-HDMapping"]
+	path = methods/benchmark-LIO-EKF-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-LIO-EKF-to-HDMapping.git
+[submodule "methods/benchmark-iG-LIO-to-HDMapping"]
+	path = methods/benchmark-iG-LIO-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-iG-LIO-to-HDMapping.git
+[submodule "methods/benchmark-RESPLE-to-HDMapping"]
+	path = methods/benchmark-RESPLE-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-RESPLE-to-HDMapping.git
+[submodule "methods/benchmark-SLICT-to-HDMapping"]
+	path = methods/benchmark-SLICT-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-SLICT-to-HDMapping.git
+[submodule "methods/benchmark-MAD-ICP-to-HDMapping"]
+	path = methods/benchmark-MAD-ICP-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-MAD-ICP-to-HDMapping.git
+[submodule "methods/benchmark-GLIM-to-HDMapping"]
+	path = methods/benchmark-GLIM-to-HDMapping
+	url = git@github.com:MapsHD/benchmark-GLIM-to-HDMapping.git
