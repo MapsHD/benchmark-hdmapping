@@ -318,7 +318,7 @@ quadrantChart
     quadrant-3 "Planning Stage"
     quadrant-4 "Initial Development"
     
-    GenZ-ICP: [0.15, 0.60]
+    GenZ-ICP: [0.48, 0.60]
     
     CT-ICP: [0.05, 0.10]
     DLIO: [0.08, 0.05]
@@ -342,7 +342,7 @@ quadrantChart
 ```
 
 **Current Status:**
-- ✅ **Supported**: GenZ-ICP (1 dataset: Pipes/AVIA)
+- ✅ **Supported**: GenZ-ICP (All 4 Livox: AVIA, MID360 Arm/Stick, HAP)
 - ⏳ **In Progress**: 0 methods
 - 📋 **Planned**: 19 methods (CT-ICP, DLIO, DLO, FAST-LIO, Faster-LIO, GLIM, I2EKF-LO, iG-LIO, KISS-ICP, LeGO-LOAM, LiDAR-IMU-Init, LIO-EKF, LIO-SAM, LOAM-Livox, MAD-ICP, Point-LIO, RESPLE, SLICT, VoxelMap)
 
@@ -354,14 +354,14 @@ quadrantChart
 
 Track implementation progress for each method across different locations. Values show scanners supported / total scanners available at location.
 
-| Method | Beech-old<br>(8) | Mixture-old<br>(8) | Mixture-young<br>(8) | One park<br>(8) | Two parks<br>(8) | Pipes<br>(8) | Spruce150x60<br>(8) | Spruce-old<br>(8) | Spruce-young<br>(8) | **Total** |
+| Method | Beech-old<br>(8) | Mixture-old<br>(8) | Mixture-young<br>(8) | One park<br>(8) | Parks<br>(8) | Pipes<br>(8) | Spruce<br>150x60<br>(8) | Spruce-old<br>(8) | Spruce-young<br>(8) | **Total** |
 |--------|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:---------:|
 | **CT-ICP** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
 | **DLIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
 | **DLO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
 | **FAST-LIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
 | **Faster-LIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **GenZ-ICP** | 0/8 | 0/8 | 0/8 | 0/8 | 1/8 | 0/8 | 0/8 | 0/8 | 0/8 | **1/72** |
+| **GenZ-ICP** | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | **36/72** |
 | **GLIM** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
 | **I2EKF-LO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
 | **iG-LIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
@@ -376,7 +376,7 @@ Track implementation progress for each method across different locations. Values
 | **RESPLE** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
 | **SLICT** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
 | **VoxelMap** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **TOTAL** | **0/160** | **0/160** | **0/160** | **0/320** | **1/160** | **0/160** | **0/160** | **0/160** | **1/1440** |
+| **TOTAL** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **36/1440** |
 
 ### Progress by Scanner
 
@@ -389,7 +389,7 @@ Track implementation progress for each method across different scanner types. Va
 | **DLO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
 | **FAST-LIO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
 | **Faster-LIO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **GenZ-ICP** | 1/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **1/72** |
+| **GenZ-ICP** | 9/9 | 0/9 | 0/9 | 9/9 | 9/9 | 9/9 | 0/9 | 0/9 | **36/72** |
 | **GLIM** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
 | **I2EKF-LO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
 | **iG-LIO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
@@ -404,7 +404,7 @@ Track implementation progress for each method across different scanner types. Va
 | **RESPLE** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
 | **SLICT** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
 | **VoxelMap** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **TOTAL** | **1/180** | **0/180** | **0/180** | **0/180** | **0/180** | **0/180** | **0/180** | **0/180** | **1/1440** |
+| **TOTAL** | **9/180** | **0/180** | **0/180** | **9/180** | **9/180** | **9/180** | **0/180** | **0/180** | **36/1440** |
 
 **Legend:**
 - Values shown as `supported/available` (e.g., 1/9 means 1 out of 9 available combinations supported)
