@@ -338,7 +338,7 @@ quadrantChart
     Point-LIO: [0.05, 0.08]
     RESPLE: [0.08, 0.10]
     SLICT: [0.10, 0.12]
-    VoxelMap: [0.07, 0.08]
+    VoxelMap: [0.07, 0.28]
 ```
 
 **Current Status:**
@@ -347,6 +347,31 @@ quadrantChart
 - 📋 **Planned**: 19 methods (CT-ICP, DLIO, DLO, FAST-LIO, Faster-LIO, GLIM, I2EKF-LO, iG-LIO, KISS-ICP, LeGO-LOAM, LiDAR-IMU-Init, LIO-EKF, LIO-SAM, LOAM-Livox, MAD-ICP, Point-LIO, RESPLE, SLICT, VoxelMap)
 
 **Goal**: Achieve full coverage of all 20 methods across all 72 sequences (9 locations × 8 scanners).
+
+### Method ROS Versions
+
+| Method | ROS Version | ROS Distro |
+|--------|-------------|------------|
+| **CT-ICP** | ROS 1 | Noetic |
+| **DLIO** | ROS 1 | Noetic |
+| **DLO** | ROS 1 | Noetic |
+| **FAST-LIO** | ROS 1 | Noetic |
+| **Faster-LIO** | ROS 1 | Noetic |
+| **GenZ-ICP** | ROS 2 | Jazzy |
+| **GLIM** | ROS 2 | Jazzy |
+| **I2EKF-LO** | ROS 1 | Noetic |
+| **iG-LIO** | ROS 1 | Noetic |
+| **KISS-ICP** | ROS 2 | Jazzy |
+| **LeGO-LOAM** | ROS 1 | Noetic |
+| **LiDAR-IMU-Init** | ROS 1 | Noetic |
+| **LIO-EKF** | ROS 1 | Noetic |
+| **LIO-SAM** | ROS 1 | Noetic |
+| **LOAM-Livox** | ROS 1 | Noetic |
+| **MAD-ICP** | ROS 2 | Jazzy |
+| **Point-LIO** | ROS 1 | Noetic |
+| **RESPLE** | ROS 2 | Jazzy |
+| **SLICT** | ROS 1 | Noetic |
+| **VoxelMap** | ROS 1 | Noetic |
 
 ## Implementation Progress Tracking
 
