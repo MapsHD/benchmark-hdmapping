@@ -336,7 +336,7 @@ quadrantChart
     LOAM-Livox: [0.08, 0.10]
     MAD-ICP: [0.12, 0.05]
     Point-LIO: [0.05, 0.08]
-    RESPLE: [0.08, 0.10]
+    RESPLE: [0.08, 0.25]
     SLICT: [0.10, 0.12]
     VoxelMap: [0.07, 0.28]
 ```
