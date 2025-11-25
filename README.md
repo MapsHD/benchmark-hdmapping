@@ -333,7 +333,7 @@ quadrantChart
     LiDAR-IMU-Init: [0.07, 0.10]
     LIO-EKF: [0.05, 0.12]
     LIO-SAM: [0.10, 0.08]
-    LOAM-Livox: [0.08, 0.10]
+    LOAM-Livox: [0.08, 0.30]
     MAD-ICP: [0.12, 0.26]
     Point-LIO: [0.05, 0.28]
     RESPLE: [0.08, 0.25]
