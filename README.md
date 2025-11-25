@@ -334,10 +334,10 @@ quadrantChart
     LIO-EKF: [0.05, 0.12]
     LIO-SAM: [0.10, 0.08]
     LOAM-Livox: [0.08, 0.10]
-    MAD-ICP: [0.12, 0.05]
+    MAD-ICP: [0.12, 0.26]
     Point-LIO: [0.05, 0.08]
     RESPLE: [0.08, 0.25]
-    SLICT: [0.10, 0.12]
+    SLICT: [0.10, 0.22]
     VoxelMap: [0.07, 0.28]
 ```
 
