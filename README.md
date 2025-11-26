@@ -318,7 +318,7 @@ quadrantChart
     quadrant-3 "Planning Stage"
     quadrant-4 "Initial Development"
     
-    GenZ-ICP: [0.48, 0.60]
+    GenZ-ICP: [0.48, 0.63]
     
     CT-ICP: [0.05, 0.10]
     DLIO: [0.08, 0.05]
@@ -331,7 +331,7 @@ quadrantChart
     KISS-ICP: [0.10, 0.25]
     LeGO-LOAM: [0.03, 0.28]
     LiDAR-IMU-Init: [0.07, 0.30]
-    LIO-EKF: [0.05, 0.12]
+    LIO-EKF: [0.05, 0.32]
     LIO-SAM: [0.10, 0.28]
     LOAM-Livox: [0.08, 0.30]
     MAD-ICP: [0.12, 0.26]
