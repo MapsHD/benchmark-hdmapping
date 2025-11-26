@@ -329,7 +329,7 @@ quadrantChart
     I2EKF-LO: [0.05, 0.10]
     iG-LIO: [0.08, 0.32]
     KISS-ICP: [0.10, 0.05]
-    LeGO-LOAM: [0.03, 0.08]
+    LeGO-LOAM: [0.03, 0.28]
     LiDAR-IMU-Init: [0.07, 0.30]
     LIO-EKF: [0.05, 0.12]
     LIO-SAM: [0.10, 0.28]
