@@ -326,7 +326,7 @@ quadrantChart
     FAST-LIO: [0.10, 0.12]
     Faster-LIO: [0.07, 0.15]
     GLIM: [0.12, 0.08]
-    I2EKF-LO: [0.05, 0.10]
+    I2EKF-LO: [0.05, 0.30]
     iG-LIO: [0.08, 0.32]
     KISS-ICP: [0.10, 0.25]
     LeGO-LOAM: [0.03, 0.28]
