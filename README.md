@@ -320,10 +320,10 @@ quadrantChart
     
     GenZ-ICP: [0.48, 0.63]
     
-    CT-ICP: [0.05, 0.10]
+    CT-ICP: [0.05, 0.30]
     DLIO: [0.08, 0.25]
     DLO: [0.03, 0.28]
-    FAST-LIO: [0.10, 0.12]
+    FAST-LIO: [0.10, 0.32]
     Faster-LIO: [0.07, 0.35]
     GLIM: [0.12, 0.28]
     I2EKF-LO: [0.05, 0.30]
@@ -340,12 +340,6 @@ quadrantChart
     SLICT: [0.10, 0.22]
     VoxelMap: [0.07, 0.28]
 ```
-
-**Current Status:**
-- ✅ **Supported**: GenZ-ICP (All 4 Livox: AVIA, MID360 Arm/Stick, HAP)
-- ⏳ **In Progress**: 0 methods
-- 📋 **Planned**: 19 methods (CT-ICP, DLIO, DLO, FAST-LIO, Faster-LIO, GLIM, I2EKF-LO, iG-LIO, KISS-ICP, LeGO-LOAM, LiDAR-IMU-Init, LIO-EKF, LIO-SAM, LOAM-Livox, MAD-ICP, Point-LIO, RESPLE, SLICT, VoxelMap)
-
 **Goal**: Achieve full coverage of all 20 methods across all 72 sequences (9 locations × 8 scanners).
 
 ### Method ROS Versions
