@@ -282,14 +282,33 @@ The benchmark includes data from the following LiDAR scanners:
 - **Total Unique Location-Scanner Combinations**: 72
 - **Scanner Coverage**: All 8 scanners are present in all 9 locations (9/9 locations each)
 
-## Special Notes
-
-### Data Characteristics
-TBD
 
 ## Usage
 
-TBD
+To run experiments for each method run:
+
+```
+run_all_avia.sh         path/to/dataset
+run_all_cticp.sh        path/to/dataset
+run_all_dlio.sh         path/to/dataset
+run_all_dlo.sh          path/to/dataset
+run_all_fasterlio.sh    path/to/dataset
+run_all_fastlio.sh      path/to/dataset
+run_all_genz.sh         path/to/dataset
+run_all_glim.sh         path/to/dataset
+run_all_i2ekflo.sh      path/to/dataset
+run_all_iglio.sh        path/to/dataset
+run_all_kiss.sh         path/to/dataset
+run_all_legoloam.sh     path/to/dataset
+run_all_lidarimuinit.sh path/to/dataset
+run_all_lioekf.sh       path/to/dataset
+run_all_liosam.sh       path/to/dataset
+run_all_loamlivox.sh    path/to/dataset
+run_all_pointlio.sh     path/to/dataset
+run_all_resple.sh       path/to/dataset
+run_all_slict.sh        path/to/dataset
+run_all_voxelmap.sh     path/to/dataset
+```
 
 ## Citation
 
@@ -299,9 +318,6 @@ If you use this benchmark dataset in your research, please cite:
 [Citation information to be added]
 ```
 
-## License
-
-[License information to be added]
 
 ## Method Support Status
 
@@ -318,27 +334,29 @@ quadrantChart
     quadrant-3 "Planning Stage"
     quadrant-4 "Initial Development"
     
-    GenZ-ICP: [0.48, 0.63]
+    GenZ-ICP: [0.9, 0.83]
+    KISS-ICP: [0.76, 0.75]
     
-    CT-ICP: [0.05, 0.30]
-    DLIO: [0.08, 0.25]
-    DLO: [0.03, 0.28]
-    FAST-LIO: [0.10, 0.32]
-    Faster-LIO: [0.07, 0.35]
-    GLIM: [0.12, 0.28]
-    I2EKF-LO: [0.05, 0.30]
-    iG-LIO: [0.08, 0.32]
-    KISS-ICP: [0.10, 0.25]
-    LeGO-LOAM: [0.03, 0.28]
-    LiDAR-IMU-Init: [0.07, 0.30]
-    LIO-EKF: [0.05, 0.32]
-    LIO-SAM: [0.10, 0.28]
-    LOAM-Livox: [0.08, 0.30]
-    MAD-ICP: [0.12, 0.26]
-    Point-LIO: [0.05, 0.28]
-    RESPLE: [0.08, 0.25]
-    SLICT: [0.10, 0.22]
-    VoxelMap: [0.07, 0.28]
+    RESPLE: [0.82, 0.55]
+
+    MAD-ICP: [0.25, 0.26]
+    CT-ICP: [0.3, 0.28]
+    
+    DLIO: [0.79, 0.35]
+    DLO: [0.78, 0.38]
+    FAST-LIO: [0.81, 0.32]
+    Faster-LIO: [0.82, 0.35]
+    GLIM: [0.83, 0.38]
+    I2EKF-LO: [0.84, 0.40]
+    iG-LIO: [0.77, 0.32]
+    LeGO-LOAM: [0.76, 0.28]
+    LiDAR-IMU-Init: [0.77, 0.30]
+    LIO-EKF: [0.78, 0.32]
+    LIO-SAM: [0.79, 0.28]
+    LOAM-Livox: [0.8, 0.30]
+    Point-LIO: [0.81, 0.28]
+    SLICT: [0.83, 0.32]
+    VoxelMap: [0.84, 0.28]
 ```
 **Goal**: Achieve full coverage of all 20 methods across all 72 sequences (9 locations × 8 scanners).
 
@@ -366,66 +384,3 @@ quadrantChart
 | **RESPLE** | ROS 2 | Jazzy |
 | **SLICT** | ROS 1 | Noetic |
 | **VoxelMap** | ROS 1 | Noetic |
-
-## Implementation Progress Tracking
-
-### Progress by Location
-
-Track implementation progress for each method across different locations. Values show scanners supported / total scanners available at location.
-
-| Method | Beech-old<br>(8) | Mixture-old<br>(8) | Mixture-young<br>(8) | One park<br>(8) | Parks<br>(8) | Pipes<br>(8) | Spruce<br>150x60<br>(8) | Spruce-old<br>(8) | Spruce-young<br>(8) | **Total** |
-|--------|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:---------:|
-| **CT-ICP** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **DLIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **DLO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **FAST-LIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **Faster-LIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **GenZ-ICP** | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | 4/8 | **36/72** |
-| **GLIM** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **I2EKF-LO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **iG-LIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **KISS-ICP** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **LeGO-LOAM** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **LiDAR-IMU-Init** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **LIO-EKF** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **LIO-SAM** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **LOAM-Livox** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **MAD-ICP** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **Point-LIO** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **RESPLE** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **SLICT** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **VoxelMap** | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | **0/72** |
-| **TOTAL** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **4/160** | **36/1440** |
-
-### Progress by Scanner
-
-Track implementation progress for each method across different scanner types. Values show locations supported / total locations available for scanner.
-
-| Method | AVIA<br>(9) | Hesai Big<br>(9) | Hesai Small<br>(9) | Livox HAP<br>(9) | MID ARM<br>(9) | MID STICK<br>(9) | Ouster<br>(9) | SICK<br>(9) | **Total** |
-|--------|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:---------:|
-| **CT-ICP** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **DLIO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **DLO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **FAST-LIO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **Faster-LIO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **GenZ-ICP** | 9/9 | 0/9 | 0/9 | 9/9 | 9/9 | 9/9 | 0/9 | 0/9 | **36/72** |
-| **GLIM** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **I2EKF-LO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **iG-LIO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **KISS-ICP** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **LeGO-LOAM** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **LiDAR-IMU-Init** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **LIO-EKF** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **LIO-SAM** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **LOAM-Livox** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **MAD-ICP** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **Point-LIO** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **RESPLE** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **SLICT** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **VoxelMap** | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | 0/9 | **0/72** |
-| **TOTAL** | **9/180** | **0/180** | **0/180** | **9/180** | **9/180** | **9/180** | **0/180** | **0/180** | **36/1440** |
-
-**Legend:**
-- Values shown as `supported/available` (e.g., 1/9 means 1 out of 9 available combinations supported)
-- **Bold totals** show cumulative progress
-- Total possible combinations: 1440 (20 methods × 72 sequences)
