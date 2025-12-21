@@ -1,26 +1,17 @@
 #!/bin/bash
 
-# Script to run benchmarks for all Livox datasets
-# Automatically discovers all Livox sensor directories and processes them
-# Livox sensors: AVIA, LivoxHAP, LivoxMID360Arm, LivoxMID360Stick
-# All use the same avia config (same topics in rosbag)
+# Script to run Faster-LIO (ROS1) benchmarks for ALL datasets
+# Automatically discovers all sensor directories and processes them
 #
-# Usage: ./run_all_avia.sh BASE_PATH
-#   BASE_PATH: Base directory to search for Livox datasets (required)
+# Usage: ./run_all_fasterlio.sh BASE_PATH
+#   BASE_PATH: Base directory to search for datasets (required)
 
 set -e
 
-# Check if BASE_PATH argument is provided
 if [ -z "$1" ]; then
     echo "Error: BASE_PATH argument is required"
     echo ""
     echo "Usage: $0 BASE_PATH"
-    echo ""
-    echo "Arguments:"
-    echo "  BASE_PATH    Base directory to search for Livox datasets"
-    echo ""
-    echo "Example:"
-    echo "  $0 /path/to/benchmark-data/lowcost-experiment"
     exit 1
 fi
 
@@ -30,94 +21,117 @@ BASE_PATH="$1"
 SCRIPT_START_TIME=$(date +%s)
 
 echo "======================================"
-echo "Running benchmarks for all Livox datasets"
+echo "Running Faster-LIO (ROS1) benchmarks for all datasets"
 echo "======================================"
 echo "Base path: $BASE_PATH"
 echo ""
 
-# Find all Livox sensor directories and merge into single list
-LIVOX_DIRS=$(
+# Function to get config name for a sensor
+# NOTE: MandEye ROS1 bags use /livox/* topics for all sensors
+get_config_for_sensor() {
+    local sensor_name="$1"
+    echo "avia"
+}
+
+# Find all sensor directories
+SENSOR_DIRS=$(
     {
         find "$BASE_PATH" -type d -name "AVIA"
         find "$BASE_PATH" -type d -name "LivoxHAP"
         find "$BASE_PATH" -type d -name "LivoxMID360Arm"
         find "$BASE_PATH" -type d -name "LivoxMID360Stick"
+        find "$BASE_PATH" -type d -name "HesaiBig"
+        find "$BASE_PATH" -type d -name "HesaiSmall"
+        find "$BASE_PATH" -type d -name "Ouster"
+        find "$BASE_PATH" -type d -name "SICK"
     } | sort
 )
 
-if [ -z "$LIVOX_DIRS" ]; then
-    echo "Error: No Livox sensor directories found in $BASE_PATH"
+if [ -z "$SENSOR_DIRS" ]; then
+    echo "Error: No sensor directories found in $BASE_PATH"
     exit 1
 fi
 
-# Count total directories
-TOTAL=$(echo "$LIVOX_DIRS" | wc -l)
+TOTAL=$(echo "$SENSOR_DIRS" | wc -l)
 CURRENT=0
 
-# Arrays to store results
 declare -a EXPERIMENT_NAMES
 declare -a PROCESSING_TIMES
 declare -a PROCESSING_STATUS
+declare -a CONFIG_NAMES
 
-echo "Found $TOTAL Livox dataset(s):"
+echo "Found $TOTAL dataset(s):"
 echo "======================================"
-for LIVOX_DIR in $LIVOX_DIRS; do
-    SENSOR_NAME=$(basename "$LIVOX_DIR")
-    EXPERIMENT_NAME=$(basename $(dirname "$LIVOX_DIR"))
-    echo "  - $EXPERIMENT_NAME/$SENSOR_NAME: $LIVOX_DIR"
-done
+while IFS= read -r SENSOR_DIR; do
+    SENSOR_NAME=$(basename "$SENSOR_DIR")
+    EXPERIMENT_NAME=$(basename "$(dirname "$SENSOR_DIR")")
+    CONFIG=$(get_config_for_sensor "$SENSOR_NAME")
+
+    if [ -f "./methods/benchmark-Faster-LIO-to-HDMapping/configs/${CONFIG}.env" ]; then
+        CONFIG_DISPLAY="$CONFIG"
+    else
+        CONFIG_DISPLAY="$CONFIG (missing)"
+    fi
+
+    echo "  - $EXPERIMENT_NAME/$SENSOR_NAME [$CONFIG_DISPLAY]: $SENSOR_DIR"
+done <<< "$SENSOR_DIRS"
 echo "======================================"
 echo ""
 read -p "Press Enter to continue"
 echo ""
 
-# Process each Livox directory
-for LIVOX_DIR in $LIVOX_DIRS; do
+while IFS= read -r SENSOR_DIR; do
     CURRENT=$((CURRENT + 1))
-    
-    # Extract the sensor name (e.g., "AVIA", "LivoxHAP", etc.)
-    SENSOR_NAME=$(basename "$LIVOX_DIR")
-    
-    # Extract the experiment name (e.g., "Pipes", "Spruce-old", etc.)
-    PARENT_NAME=$(basename $(dirname "$LIVOX_DIR"))
-    
-    # Combined identifier for display
+
+    SENSOR_NAME=$(basename "$SENSOR_DIR")
+    PARENT_NAME=$(basename "$(dirname "$SENSOR_DIR")")
     EXPERIMENT_NAME="${PARENT_NAME}/${SENSOR_NAME}"
-    
-    # Construct the input bag directory path (new layout: ros2bag is the bag dir)
-    INPUT_BAG_DIRECTORY="${LIVOX_DIR}/ros2bag/"
-    
+    CONFIG=$(get_config_for_sensor "$SENSOR_NAME")
+
+    INPUT_BAG_FILE="${SENSOR_DIR}/ros1bag/mandeye.bag"
+
     echo "======================================"
     echo "[$CURRENT/$TOTAL] Processing: $EXPERIMENT_NAME"
     echo "======================================"
-    echo "Livox Directory: $LIVOX_DIR"
-    echo "Input Bag Directory: $INPUT_BAG_DIRECTORY"
+    echo "Sensor Directory: $SENSOR_DIR"
+    echo "Input Bag File: $INPUT_BAG_FILE"
+    echo "Config: $CONFIG"
     echo ""
-    
-    # Check if the bag directory exists
-    if [ ! -d "$INPUT_BAG_DIRECTORY" ]; then
-        echo "Warning: Bag directory does not exist: $INPUT_BAG_DIRECTORY"
+
+    CONFIG_FILE="./methods/benchmark-Faster-LIO-to-HDMapping/configs/${CONFIG}.env"
+    if [ ! -f "$CONFIG_FILE" ]; then
+        echo "Warning: Config file does not exist: $CONFIG_FILE"
         echo "Skipping $EXPERIMENT_NAME..."
         echo ""
         EXPERIMENT_NAMES+=("$EXPERIMENT_NAME")
         PROCESSING_TIMES+=("N/A")
-        PROCESSING_STATUS+=("SKIPPED")
+        PROCESSING_STATUS+=("SKIPPED (config missing)")
+        CONFIG_NAMES+=("$CONFIG")
         continue
     fi
-    
-    # Run the benchmark and track time
-    echo "Running benchmark for $EXPERIMENT_NAME..."
+
+    if [ ! -f "$INPUT_BAG_FILE" ]; then
+        echo "Warning: Bag file does not exist: $INPUT_BAG_FILE"
+        echo "Skipping $EXPERIMENT_NAME..."
+        echo ""
+        EXPERIMENT_NAMES+=("$EXPERIMENT_NAME")
+        PROCESSING_TIMES+=("N/A")
+        PROCESSING_STATUS+=("SKIPPED (no bag)")
+        CONFIG_NAMES+=("$CONFIG")
+        continue
+    fi
+
+    echo "Running Faster-LIO benchmark for $EXPERIMENT_NAME with config: $CONFIG..."
     START_TIME=$(date +%s)
-    
-    if ./methods/benchmark-GenZ-ICP-to-HDMapping/run_benchmark.sh avia "$INPUT_BAG_DIRECTORY"; then
+
+    if ./methods/benchmark-Faster-LIO-to-HDMapping/run_benchmark.sh "$CONFIG" "$INPUT_BAG_FILE"; then
         END_TIME=$(date +%s)
         ELAPSED=$((END_TIME - START_TIME))
-        
-        # Convert to human-readable format
+
         HOURS=$((ELAPSED / 3600))
         MINUTES=$(((ELAPSED % 3600) / 60))
         SECONDS=$((ELAPSED % 60))
-        
+
         if [ $HOURS -gt 0 ]; then
             TIME_STR="${HOURS}h ${MINUTES}m ${SECONDS}s"
         elif [ $MINUTES -gt 0 ]; then
@@ -125,36 +139,38 @@ for LIVOX_DIR in $LIVOX_DIRS; do
         else
             TIME_STR="${SECONDS}s"
         fi
-        
+
         EXPERIMENT_NAMES+=("$EXPERIMENT_NAME")
         PROCESSING_TIMES+=("$TIME_STR")
         PROCESSING_STATUS+=("SUCCESS")
-        
+        CONFIG_NAMES+=("$CONFIG")
+
         echo ""
-        echo "✓ Completed: $EXPERIMENT_NAME (Time: $TIME_STR)"
+        echo "Completed: $EXPERIMENT_NAME (Time: $TIME_STR)"
         echo ""
     else
         END_TIME=$(date +%s)
         ELAPSED=$((END_TIME - START_TIME))
+
         EXPERIMENT_NAMES+=("$EXPERIMENT_NAME")
         PROCESSING_TIMES+=("${ELAPSED}s")
         PROCESSING_STATUS+=("FAILED")
-        
+        CONFIG_NAMES+=("$CONFIG")
+
         echo ""
-        echo "✗ Failed: $EXPERIMENT_NAME"
+        echo "Failed: $EXPERIMENT_NAME"
         echo ""
     fi
-done
+done <<< "$SENSOR_DIRS"
 
 echo "======================================"
-echo "All Livox benchmarks completed!"
+echo "All Faster-LIO benchmarks completed!"
 echo "Processed $CURRENT out of $TOTAL datasets"
 echo "======================================"
 echo ""
 echo "SUMMARY - Processing Times:"
 echo "======================================"
 
-# Calculate statistics
 SUCCESS_COUNT=0
 FAILED_COUNT=0
 SKIPPED_COUNT=0
@@ -163,20 +179,20 @@ for i in "${!EXPERIMENT_NAMES[@]}"; do
     STATUS="${PROCESSING_STATUS[$i]}"
     EXPERIMENT="${EXPERIMENT_NAMES[$i]}"
     TIME="${PROCESSING_TIMES[$i]}"
-    
-    # Status symbol
+    CONFIG="${CONFIG_NAMES[$i]}"
+
     if [ "$STATUS" = "SUCCESS" ]; then
-        SYMBOL="✓"
+        SYMBOL="[OK]"
         SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
     elif [ "$STATUS" = "FAILED" ]; then
-        SYMBOL="✗"
+        SYMBOL="[FAIL]"
         FAILED_COUNT=$((FAILED_COUNT + 1))
     else
-        SYMBOL="⊘"
+        SYMBOL="[SKIP]"
         SKIPPED_COUNT=$((SKIPPED_COUNT + 1))
     fi
-    
-    printf "  %s %-30s %10s  (%s)\n" "$SYMBOL" "$EXPERIMENT" "$TIME" "$STATUS"
+
+    printf "  %s %-35s %-12s %10s  (%s)\n" "$SYMBOL" "$EXPERIMENT" "[$CONFIG]" "$TIME" "$STATUS"
 done
 
 echo "======================================"
@@ -188,7 +204,6 @@ echo "  Total:   $TOTAL"
 echo "======================================"
 echo ""
 
-# Calculate and display total time
 SCRIPT_END_TIME=$(date +%s)
 TOTAL_ELAPSED=$((SCRIPT_END_TIME - SCRIPT_START_TIME))
 

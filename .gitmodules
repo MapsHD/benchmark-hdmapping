@@ -58,3 +58,6 @@
 [submodule "methods/benchmark-GLIM-to-HDMapping"]
 	path = methods/benchmark-GLIM-to-HDMapping
 	url = git@github.com:MapsHD/benchmark-GLIM-to-HDMapping.git
+[submodule "tools/mandeye_to_bag"]
+	path = tools/mandeye_to_bag
+	url = git@github.com:MapsHD/mandeye_to_bag.git
